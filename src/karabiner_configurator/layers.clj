@@ -15,6 +15,10 @@
                     (nn? (:key v))
                     (k? (:key v)))
                    (str "invalid simlayer definition " k))
+          modi (:modi v)
+          _ (massert (and (or (vector? (:mandatory modi))
+                              (vector? (:optional modi))))
+                     "expect :mandatory or :optional as vector in simlayers :modi")
           condi (:condi v)
           condi (if (or (keyword? condi) (map? condi)) [condi] condi)
           validate-condition
